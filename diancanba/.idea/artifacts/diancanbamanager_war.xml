@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="diancanbamanager:war">
+    <output-path>$PROJECT_DIR$/diancanba-manager/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>diancanbamanager</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="diancanba-manager-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="diancanbamanager:war exploded" />
+    </root>
+  </artifact>
+</component>

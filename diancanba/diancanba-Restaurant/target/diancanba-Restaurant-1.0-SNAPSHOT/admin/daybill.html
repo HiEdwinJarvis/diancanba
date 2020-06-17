@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
+    <!-- 分页组件开始 -->
+	<script src="../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<!-- 分页组件结束 -->
+
+<!--图-->
+    <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/oldie.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
+
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    
+    <script type="text/javascript" src="../js/base_pagination.js">  </script>
+    <script type="text/javascript" src="../js/service/daybillService.js">  </script>
+    <script type="text/javascript" src="../js/service/monthbillService.js">  </script>
+
+    <script type="text/javascript" src="../js/controller/baseController.js">  </script>
+    <script type="text/javascript" src="../js/controller/daybillController.js">  </script>
+    
+</head>
+<body class="hold-transition skin-red sidebar-mini" ng-app="diancanba" ng-controller="daybillController" ng-init="findBill()">
+  <!-- .box-body -->
+                    <div class="box-header with-border">
+                        <h3 class="box-title">管理</h3>
+                    </div>
+
+  <div id="container" style="min-width:400px;height:400px"></div>
+
+  <br>
+
+  <select class="custom-select" id="inputGroupSelect02" ng-model="year">
+      <option selected>选择年份</option>
+      <option value="2020">2020</option>
+      <option value="2019">2019</option>
+      <option value="2018">2018</option>
+  </select>
+  <button type="button" ng-click="findMonthbill()">查看</button>
+  <div id="container2" style="min-width:400px;height:400px"></div>
+
+
+
+  </div>
+  <!-- /.col (RIGHT) -->
+
+
+  <script>
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
+    <!-- 分页组件开始 -->
+	<script src="../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<!-- 分页组件结束 -->
+
+
+    <!--end-->
+    
+    
+    <script type="text/javascript" src="../js/base_pagination.js">  </script>
+    <script type="text/javascript" src="../js/service/restaurantService.js">  </script>
+    <script type="text/javascript" src="../js/controller/baseController.js">  </script>
+    <script type="text/javascript" src="../js/controller/restaurantController.js">  </script>
+   <!--qrious文件引入-->
+    <script type="text/javascript" src="../plugins/qrious.min.js"></script>
+</head>
+<body class="hold-transition skin-red sidebar-mini" ng-app="diancanba" ng-controller="restaurantController" ng-init="showHref()">
+  <!-- .box-body -->
+                    <div class="box-header with-border">
+                        <h3 class="box-title">管理</h3>
+                    </div>
+
+                    <div class="box-body">
+
+                        <!-- 数据表格 -->
+                        <div class="table-box">
+
+                            <!--工具栏-->
+
+                            <div class="box-tools pull-right">
+                                <div class="has-feedback">							       
+                                </div>
+                            </div>
+                            <!--工具栏/-->
+
+			                  <!--数据列表-->
+                            <p>{{lianjie}}</p>
+
+                            <!--二维码-->
+                            <h2>手机端进入系统的入口：</h2><br>
+                            <img id="qrious">
+			                  <!--数据列表/-->
+
+
+
+
+                            <div class="chart">
+                                <canvas id="salesChart" style="height: 180px;">
+                                </canvas>
+                            </div>
+
+
+
+                            <!-- Main content -->
+                            <section class="content">
+
+                                <div class="row">
+
+                                </div>
+                                <!-- /.row -->
+
+                            </section>
+
+                        </div>
+                        <!-- 数据表格 /-->
+                        <!-- 分页 -->
+                        <tr>
+
+                        </tr>
+                     </div>
+                    <!-- /.box-body -->
+
+
+
+
+</body>
+
+</html>

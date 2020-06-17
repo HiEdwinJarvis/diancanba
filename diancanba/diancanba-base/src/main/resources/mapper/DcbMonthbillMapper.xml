@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jarvis.diancanba.base.mapper.DcbMonthbillMapper" >
+  <resultMap id="BaseResultMap" type="com.jarvis.diancanba.base.pojo.DcbMonthbill" >
+    <id column="DCB_MonthBillId" property="dcbMonthbillid" jdbcType="BIGINT" />
+    <result column="DCB_RestaurantId" property="dcbRestaurantid" jdbcType="BIGINT" />
+    <result column="DCB_RestaurantName" property="dcbRestaurantname" jdbcType="VARCHAR" />
+    <result column="DCB_MonthBillDateTime" property="dcbMonthbilldatetime" jdbcType="TIMESTAMP" />
+    <result column="DCB_Month" property="dcbMonth" jdbcType="INTEGER" />
+    <result column="DCB_MonthBillIncomeFront" property="dcbMonthbillincomefront" jdbcType="REAL" />
+    <result column="DCB_MonthBillIncomeAfter" property="dcbMonthbillincomeafter" jdbcType="REAL" />
+    <result column="DCB_MonthBillStatus" property="dcbMonthbillstatus" jdbcType="INTEGER" />
+    <result column="DCB_MonthBillIdea" property="dcbMonthbillidea" jdbcType="VARCHAR" />
+    <result column="DCB_MonthBillProperty1" property="dcbMonthbillproperty1" jdbcType="VARCHAR" />
+    <result column="DCB_MonthBillProperty2" property="dcbMonthbillproperty2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DCB_MonthBillId, DCB_RestaurantId, DCB_RestaurantName, DCB_MonthBillDateTime, DCB_Month, 
+    DCB_MonthBillIncomeFront, DCB_MonthBillIncomeAfter, DCB_MonthBillStatus, DCB_MonthBillIdea, 
+    DCB_MonthBillProperty1, DCB_MonthBillProperty2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jarvis.diancanba.base.pojo.DcbMonthbillExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dcb_monthbill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcb_monthbill
+    where DCB_MonthBillId = #{dcbMonthbillid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dcb_monthbill
+    where DCB_MonthBillId = #{dcbMonthbillid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbMonthbillExample" >
+    delete from dcb_monthbill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarvis.diancanba.base.pojo.DcbMonthbill" >
+    insert into dcb_monthbill (DCB_MonthBillId, DCB_RestaurantId, DCB_RestaurantName, 
+      DCB_MonthBillDateTime, DCB_Month, DCB_MonthBillIncomeFront, 
+      DCB_MonthBillIncomeAfter, DCB_MonthBillStatus, 
+      DCB_MonthBillIdea, DCB_MonthBillProperty1, 
+      DCB_MonthBillProperty2)
+    values (#{dcbMonthbillid,jdbcType=BIGINT}, #{dcbRestaurantid,jdbcType=BIGINT}, #{dcbRestaurantname,jdbcType=VARCHAR}, 
+      #{dcbMonthbilldatetime,jdbcType=TIMESTAMP}, #{dcbMonth,jdbcType=INTEGER}, #{dcbMonthbillincomefront,jdbcType=REAL}, 
+      #{dcbMonthbillincomeafter,jdbcType=REAL}, #{dcbMonthbillstatus,jdbcType=INTEGER}, 
+      #{dcbMonthbillidea,jdbcType=VARCHAR}, #{dcbMonthbillproperty1,jdbcType=VARCHAR}, 
+      #{dcbMonthbillproperty2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarvis.diancanba.base.pojo.DcbMonthbill" >
+    insert into dcb_monthbill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dcbMonthbillid != null" >
+        DCB_MonthBillId,
+      </if>
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId,
+      </if>
+      <if test="dcbRestaurantname != null" >
+        DCB_RestaurantName,
+      </if>
+      <if test="dcbMonthbilldatetime != null" >
+        DCB_MonthBillDateTime,
+      </if>
+      <if test="dcbMonth != null" >
+        DCB_Month,
+      </if>
+      <if test="dcbMonthbillincomefront != null" >
+        DCB_MonthBillIncomeFront,
+      </if>
+      <if test="dcbMonthbillincomeafter != null" >
+        DCB_MonthBillIncomeAfter,
+      </if>
+      <if test="dcbMonthbillstatus != null" >
+        DCB_MonthBillStatus,
+      </if>
+      <if test="dcbMonthbillidea != null" >
+        DCB_MonthBillIdea,
+      </if>
+      <if test="dcbMonthbillproperty1 != null" >
+        DCB_MonthBillProperty1,
+      </if>
+      <if test="dcbMonthbillproperty2 != null" >
+        DCB_MonthBillProperty2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dcbMonthbillid != null" >
+        #{dcbMonthbillid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantid != null" >
+        #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantname != null" >
+        #{dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbMonthbilldatetime != null" >
+        #{dcbMonthbilldatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dcbMonth != null" >
+        #{dcbMonth,jdbcType=INTEGER},
+      </if>
+      <if test="dcbMonthbillincomefront != null" >
+        #{dcbMonthbillincomefront,jdbcType=REAL},
+      </if>
+      <if test="dcbMonthbillincomeafter != null" >
+        #{dcbMonthbillincomeafter,jdbcType=REAL},
+      </if>
+      <if test="dcbMonthbillstatus != null" >
+        #{dcbMonthbillstatus,jdbcType=INTEGER},
+      </if>
+      <if test="dcbMonthbillidea != null" >
+        #{dcbMonthbillidea,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbMonthbillproperty1 != null" >
+        #{dcbMonthbillproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbMonthbillproperty2 != null" >
+        #{dcbMonthbillproperty2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbMonthbillExample" resultType="java.lang.Integer" >
+    select count(*) from dcb_monthbill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dcb_monthbill
+    <set >
+      <if test="record.dcbMonthbillid != null" >
+        DCB_MonthBillId = #{record.dcbMonthbillid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbRestaurantid != null" >
+        DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbRestaurantname != null" >
+        DCB_RestaurantName = #{record.dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbMonthbilldatetime != null" >
+        DCB_MonthBillDateTime = #{record.dcbMonthbilldatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dcbMonth != null" >
+        DCB_Month = #{record.dcbMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.dcbMonthbillincomefront != null" >
+        DCB_MonthBillIncomeFront = #{record.dcbMonthbillincomefront,jdbcType=REAL},
+      </if>
+      <if test="record.dcbMonthbillincomeafter != null" >
+        DCB_MonthBillIncomeAfter = #{record.dcbMonthbillincomeafter,jdbcType=REAL},
+      </if>
+      <if test="record.dcbMonthbillstatus != null" >
+        DCB_MonthBillStatus = #{record.dcbMonthbillstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.dcbMonthbillidea != null" >
+        DCB_MonthBillIdea = #{record.dcbMonthbillidea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbMonthbillproperty1 != null" >
+        DCB_MonthBillProperty1 = #{record.dcbMonthbillproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbMonthbillproperty2 != null" >
+        DCB_MonthBillProperty2 = #{record.dcbMonthbillproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dcb_monthbill
+    set DCB_MonthBillId = #{record.dcbMonthbillid,jdbcType=BIGINT},
+      DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      DCB_RestaurantName = #{record.dcbRestaurantname,jdbcType=VARCHAR},
+      DCB_MonthBillDateTime = #{record.dcbMonthbilldatetime,jdbcType=TIMESTAMP},
+      DCB_Month = #{record.dcbMonth,jdbcType=INTEGER},
+      DCB_MonthBillIncomeFront = #{record.dcbMonthbillincomefront,jdbcType=REAL},
+      DCB_MonthBillIncomeAfter = #{record.dcbMonthbillincomeafter,jdbcType=REAL},
+      DCB_MonthBillStatus = #{record.dcbMonthbillstatus,jdbcType=INTEGER},
+      DCB_MonthBillIdea = #{record.dcbMonthbillidea,jdbcType=VARCHAR},
+      DCB_MonthBillProperty1 = #{record.dcbMonthbillproperty1,jdbcType=VARCHAR},
+      DCB_MonthBillProperty2 = #{record.dcbMonthbillproperty2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarvis.diancanba.base.pojo.DcbMonthbill" >
+    update dcb_monthbill
+    <set >
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantname != null" >
+        DCB_RestaurantName = #{dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbMonthbilldatetime != null" >
+        DCB_MonthBillDateTime = #{dcbMonthbilldatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dcbMonth != null" >
+        DCB_Month = #{dcbMonth,jdbcType=INTEGER},
+      </if>
+      <if test="dcbMonthbillincomefront != null" >
+        DCB_MonthBillIncomeFront = #{dcbMonthbillincomefront,jdbcType=REAL},
+      </if>
+      <if test="dcbMonthbillincomeafter != null" >
+        DCB_MonthBillIncomeAfter = #{dcbMonthbillincomeafter,jdbcType=REAL},
+      </if>
+      <if test="dcbMonthbillstatus != null" >
+        DCB_MonthBillStatus = #{dcbMonthbillstatus,jdbcType=INTEGER},
+      </if>
+      <if test="dcbMonthbillidea != null" >
+        DCB_MonthBillIdea = #{dcbMonthbillidea,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbMonthbillproperty1 != null" >
+        DCB_MonthBillProperty1 = #{dcbMonthbillproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbMonthbillproperty2 != null" >
+        DCB_MonthBillProperty2 = #{dcbMonthbillproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DCB_MonthBillId = #{dcbMonthbillid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarvis.diancanba.base.pojo.DcbMonthbill" >
+    update dcb_monthbill
+    set DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT},
+      DCB_RestaurantName = #{dcbRestaurantname,jdbcType=VARCHAR},
+      DCB_MonthBillDateTime = #{dcbMonthbilldatetime,jdbcType=TIMESTAMP},
+      DCB_Month = #{dcbMonth,jdbcType=INTEGER},
+      DCB_MonthBillIncomeFront = #{dcbMonthbillincomefront,jdbcType=REAL},
+      DCB_MonthBillIncomeAfter = #{dcbMonthbillincomeafter,jdbcType=REAL},
+      DCB_MonthBillStatus = #{dcbMonthbillstatus,jdbcType=INTEGER},
+      DCB_MonthBillIdea = #{dcbMonthbillidea,jdbcType=VARCHAR},
+      DCB_MonthBillProperty1 = #{dcbMonthbillproperty1,jdbcType=VARCHAR},
+      DCB_MonthBillProperty2 = #{dcbMonthbillproperty2,jdbcType=VARCHAR}
+    where DCB_MonthBillId = #{dcbMonthbillid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="diancanba-test" />
+        <module name="diancanbabase" />
+        <module name="diancanbacommon" />
+        <module name="diancanbamanager" />
+        <module name="diancanbaRestaurant" />
+        <module name="diancanbauser" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="diancanba" target="1.8" />
+      <module name="diancanba-manager" target="1.8" />
+      <module name="diancanba-task" target="1.8" />
+      <module name="diancanba-test" target="1.8" />
+      <module name="diancanbabase" target="1.8" />
+      <module name="diancanbacommon" target="1.8" />
+      <module name="diancanbadependencies" target="1.8" />
+      <module name="diancanbamanager" target="1.8" />
+      <module name="diancanbaRestaurant" target="1.8" />
+      <module name="diancanbauser" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="diancanba-manager" options="" />
+      <module name="diancanba-task" options="-parameters" />
+      <module name="diancanba-test" options="-parameters" />
+    </option>
+  </component>
+</project>

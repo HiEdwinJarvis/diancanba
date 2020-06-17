@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jarvis.diancanba.base.mapper.DcbDaybillMapper" >
+  <resultMap id="BaseResultMap" type="com.jarvis.diancanba.base.pojo.DcbDaybill" >
+    <id column="DCB_DayBillId" property="dcbDaybillid" jdbcType="BIGINT" />
+    <result column="DCB_RestaurantId" property="dcbRestaurantid" jdbcType="BIGINT" />
+    <result column="DCB_RestaurantName" property="dcbRestaurantname" jdbcType="VARCHAR" />
+    <result column="DCB_DayBillDate" property="dcbDaybilldate" jdbcType="DATE" />
+    <result column="DCB_Date" property="dcbDate" jdbcType="TIMESTAMP" />
+    <result column="DCB_SumMoney" property="dcbSummoney" jdbcType="REAL" />
+    <result column="DCB_BillProperty1" property="dcbBillproperty1" jdbcType="VARCHAR" />
+    <result column="DCB_BillProperty2" property="dcbBillproperty2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DCB_DayBillId, DCB_RestaurantId, DCB_RestaurantName, DCB_DayBillDate, DCB_Date, DCB_SumMoney, 
+    DCB_BillProperty1, DCB_BillProperty2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dcb_daybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcb_daybill
+    where DCB_DayBillId = #{dcbDaybillid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dcb_daybill
+    where DCB_DayBillId = #{dcbDaybillid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillExample" >
+    delete from dcb_daybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybill" >
+    insert into dcb_daybill (DCB_DayBillId, DCB_RestaurantId, DCB_RestaurantName, 
+      DCB_DayBillDate, DCB_Date, DCB_SumMoney, 
+      DCB_BillProperty1, DCB_BillProperty2)
+    values (#{dcbDaybillid,jdbcType=BIGINT}, #{dcbRestaurantid,jdbcType=BIGINT}, #{dcbRestaurantname,jdbcType=VARCHAR}, 
+      #{dcbDaybilldate,jdbcType=DATE}, #{dcbDate,jdbcType=TIMESTAMP}, #{dcbSummoney,jdbcType=REAL}, 
+      #{dcbBillproperty1,jdbcType=VARCHAR}, #{dcbBillproperty2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybill" >
+    insert into dcb_daybill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dcbDaybillid != null" >
+        DCB_DayBillId,
+      </if>
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId,
+      </if>
+      <if test="dcbRestaurantname != null" >
+        DCB_RestaurantName,
+      </if>
+      <if test="dcbDaybilldate != null" >
+        DCB_DayBillDate,
+      </if>
+      <if test="dcbDate != null" >
+        DCB_Date,
+      </if>
+      <if test="dcbSummoney != null" >
+        DCB_SumMoney,
+      </if>
+      <if test="dcbBillproperty1 != null" >
+        DCB_BillProperty1,
+      </if>
+      <if test="dcbBillproperty2 != null" >
+        DCB_BillProperty2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dcbDaybillid != null" >
+        #{dcbDaybillid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantid != null" >
+        #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantname != null" >
+        #{dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbDaybilldate != null" >
+        #{dcbDaybilldate,jdbcType=DATE},
+      </if>
+      <if test="dcbDate != null" >
+        #{dcbDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dcbSummoney != null" >
+        #{dcbSummoney,jdbcType=REAL},
+      </if>
+      <if test="dcbBillproperty1 != null" >
+        #{dcbBillproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBillproperty2 != null" >
+        #{dcbBillproperty2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillExample" resultType="java.lang.Integer" >
+    select count(*) from dcb_daybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dcb_daybill
+    <set >
+      <if test="record.dcbDaybillid != null" >
+        DCB_DayBillId = #{record.dcbDaybillid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbRestaurantid != null" >
+        DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbRestaurantname != null" >
+        DCB_RestaurantName = #{record.dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbDaybilldate != null" >
+        DCB_DayBillDate = #{record.dcbDaybilldate,jdbcType=DATE},
+      </if>
+      <if test="record.dcbDate != null" >
+        DCB_Date = #{record.dcbDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dcbSummoney != null" >
+        DCB_SumMoney = #{record.dcbSummoney,jdbcType=REAL},
+      </if>
+      <if test="record.dcbBillproperty1 != null" >
+        DCB_BillProperty1 = #{record.dcbBillproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbBillproperty2 != null" >
+        DCB_BillProperty2 = #{record.dcbBillproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dcb_daybill
+    set DCB_DayBillId = #{record.dcbDaybillid,jdbcType=BIGINT},
+      DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      DCB_RestaurantName = #{record.dcbRestaurantname,jdbcType=VARCHAR},
+      DCB_DayBillDate = #{record.dcbDaybilldate,jdbcType=DATE},
+      DCB_Date = #{record.dcbDate,jdbcType=TIMESTAMP},
+      DCB_SumMoney = #{record.dcbSummoney,jdbcType=REAL},
+      DCB_BillProperty1 = #{record.dcbBillproperty1,jdbcType=VARCHAR},
+      DCB_BillProperty2 = #{record.dcbBillproperty2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybill" >
+    update dcb_daybill
+    <set >
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantname != null" >
+        DCB_RestaurantName = #{dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbDaybilldate != null" >
+        DCB_DayBillDate = #{dcbDaybilldate,jdbcType=DATE},
+      </if>
+      <if test="dcbDate != null" >
+        DCB_Date = #{dcbDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dcbSummoney != null" >
+        DCB_SumMoney = #{dcbSummoney,jdbcType=REAL},
+      </if>
+      <if test="dcbBillproperty1 != null" >
+        DCB_BillProperty1 = #{dcbBillproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBillproperty2 != null" >
+        DCB_BillProperty2 = #{dcbBillproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DCB_DayBillId = #{dcbDaybillid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybill" >
+    update dcb_daybill
+    set DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT},
+      DCB_RestaurantName = #{dcbRestaurantname,jdbcType=VARCHAR},
+      DCB_DayBillDate = #{dcbDaybilldate,jdbcType=DATE},
+      DCB_Date = #{dcbDate,jdbcType=TIMESTAMP},
+      DCB_SumMoney = #{dcbSummoney,jdbcType=REAL},
+      DCB_BillProperty1 = #{dcbBillproperty1,jdbcType=VARCHAR},
+      DCB_BillProperty2 = #{dcbBillproperty2,jdbcType=VARCHAR}
+    where DCB_DayBillId = #{dcbDaybillid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jarvis.diancanba.base.mapper.DcbDaybillitemMapper" >
+  <resultMap id="BaseResultMap" type="com.jarvis.diancanba.base.pojo.DcbDaybillitem" >
+    <id column="DCB_DayBillItemId" property="dcbDaybillitemid" jdbcType="BIGINT" />
+    <result column="DCB_DayBillId" property="dcbDaybillid" jdbcType="BIGINT" />
+    <result column="DCB_ItemFoodId" property="dcbItemfoodid" jdbcType="BIGINT" />
+    <result column="DCB_ItemFoodName" property="dcbItemfoodname" jdbcType="VARCHAR" />
+    <result column="DCB_ItemFoodPrice" property="dcbItemfoodprice" jdbcType="REAL" />
+    <result column="DCB_ItemMoney" property="dcbItemmoney" jdbcType="REAL" />
+    <result column="DCB_ItemFoodNum" property="dcbItemfoodnum" jdbcType="INTEGER" />
+    <result column="DCB_FoodPicture" property="dcbFoodpicture" jdbcType="VARCHAR" />
+    <result column="DCB_DayBillItemtProperty1" property="dcbDaybillitemtproperty1" jdbcType="VARCHAR" />
+    <result column="DCB_DayBillItemProperty2" property="dcbDaybillitemproperty2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DCB_DayBillItemId, DCB_DayBillId, DCB_ItemFoodId, DCB_ItemFoodName, DCB_ItemFoodPrice, 
+    DCB_ItemMoney, DCB_ItemFoodNum, DCB_FoodPicture, DCB_DayBillItemtProperty1, DCB_DayBillItemProperty2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillitemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dcb_daybillitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcb_daybillitem
+    where DCB_DayBillItemId = #{dcbDaybillitemid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dcb_daybillitem
+    where DCB_DayBillItemId = #{dcbDaybillitemid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillitemExample" >
+    delete from dcb_daybillitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillitem" >
+    insert into dcb_daybillitem (DCB_DayBillItemId, DCB_DayBillId, DCB_ItemFoodId, 
+      DCB_ItemFoodName, DCB_ItemFoodPrice, DCB_ItemMoney, 
+      DCB_ItemFoodNum, DCB_FoodPicture, DCB_DayBillItemtProperty1, 
+      DCB_DayBillItemProperty2)
+    values (#{dcbDaybillitemid,jdbcType=BIGINT}, #{dcbDaybillid,jdbcType=BIGINT}, #{dcbItemfoodid,jdbcType=BIGINT}, 
+      #{dcbItemfoodname,jdbcType=VARCHAR}, #{dcbItemfoodprice,jdbcType=REAL}, #{dcbItemmoney,jdbcType=REAL}, 
+      #{dcbItemfoodnum,jdbcType=INTEGER}, #{dcbFoodpicture,jdbcType=VARCHAR}, #{dcbDaybillitemtproperty1,jdbcType=VARCHAR}, 
+      #{dcbDaybillitemproperty2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillitem" >
+    insert into dcb_daybillitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dcbDaybillitemid != null" >
+        DCB_DayBillItemId,
+      </if>
+      <if test="dcbDaybillid != null" >
+        DCB_DayBillId,
+      </if>
+      <if test="dcbItemfoodid != null" >
+        DCB_ItemFoodId,
+      </if>
+      <if test="dcbItemfoodname != null" >
+        DCB_ItemFoodName,
+      </if>
+      <if test="dcbItemfoodprice != null" >
+        DCB_ItemFoodPrice,
+      </if>
+      <if test="dcbItemmoney != null" >
+        DCB_ItemMoney,
+      </if>
+      <if test="dcbItemfoodnum != null" >
+        DCB_ItemFoodNum,
+      </if>
+      <if test="dcbFoodpicture != null" >
+        DCB_FoodPicture,
+      </if>
+      <if test="dcbDaybillitemtproperty1 != null" >
+        DCB_DayBillItemtProperty1,
+      </if>
+      <if test="dcbDaybillitemproperty2 != null" >
+        DCB_DayBillItemProperty2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dcbDaybillitemid != null" >
+        #{dcbDaybillitemid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbDaybillid != null" >
+        #{dcbDaybillid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbItemfoodid != null" >
+        #{dcbItemfoodid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbItemfoodname != null" >
+        #{dcbItemfoodname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbItemfoodprice != null" >
+        #{dcbItemfoodprice,jdbcType=REAL},
+      </if>
+      <if test="dcbItemmoney != null" >
+        #{dcbItemmoney,jdbcType=REAL},
+      </if>
+      <if test="dcbItemfoodnum != null" >
+        #{dcbItemfoodnum,jdbcType=INTEGER},
+      </if>
+      <if test="dcbFoodpicture != null" >
+        #{dcbFoodpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbDaybillitemtproperty1 != null" >
+        #{dcbDaybillitemtproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbDaybillitemproperty2 != null" >
+        #{dcbDaybillitemproperty2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillitemExample" resultType="java.lang.Integer" >
+    select count(*) from dcb_daybillitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dcb_daybillitem
+    <set >
+      <if test="record.dcbDaybillitemid != null" >
+        DCB_DayBillItemId = #{record.dcbDaybillitemid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbDaybillid != null" >
+        DCB_DayBillId = #{record.dcbDaybillid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbItemfoodid != null" >
+        DCB_ItemFoodId = #{record.dcbItemfoodid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbItemfoodname != null" >
+        DCB_ItemFoodName = #{record.dcbItemfoodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbItemfoodprice != null" >
+        DCB_ItemFoodPrice = #{record.dcbItemfoodprice,jdbcType=REAL},
+      </if>
+      <if test="record.dcbItemmoney != null" >
+        DCB_ItemMoney = #{record.dcbItemmoney,jdbcType=REAL},
+      </if>
+      <if test="record.dcbItemfoodnum != null" >
+        DCB_ItemFoodNum = #{record.dcbItemfoodnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.dcbFoodpicture != null" >
+        DCB_FoodPicture = #{record.dcbFoodpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbDaybillitemtproperty1 != null" >
+        DCB_DayBillItemtProperty1 = #{record.dcbDaybillitemtproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbDaybillitemproperty2 != null" >
+        DCB_DayBillItemProperty2 = #{record.dcbDaybillitemproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dcb_daybillitem
+    set DCB_DayBillItemId = #{record.dcbDaybillitemid,jdbcType=BIGINT},
+      DCB_DayBillId = #{record.dcbDaybillid,jdbcType=BIGINT},
+      DCB_ItemFoodId = #{record.dcbItemfoodid,jdbcType=BIGINT},
+      DCB_ItemFoodName = #{record.dcbItemfoodname,jdbcType=VARCHAR},
+      DCB_ItemFoodPrice = #{record.dcbItemfoodprice,jdbcType=REAL},
+      DCB_ItemMoney = #{record.dcbItemmoney,jdbcType=REAL},
+      DCB_ItemFoodNum = #{record.dcbItemfoodnum,jdbcType=INTEGER},
+      DCB_FoodPicture = #{record.dcbFoodpicture,jdbcType=VARCHAR},
+      DCB_DayBillItemtProperty1 = #{record.dcbDaybillitemtproperty1,jdbcType=VARCHAR},
+      DCB_DayBillItemProperty2 = #{record.dcbDaybillitemproperty2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillitem" >
+    update dcb_daybillitem
+    <set >
+      <if test="dcbDaybillid != null" >
+        DCB_DayBillId = #{dcbDaybillid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbItemfoodid != null" >
+        DCB_ItemFoodId = #{dcbItemfoodid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbItemfoodname != null" >
+        DCB_ItemFoodName = #{dcbItemfoodname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbItemfoodprice != null" >
+        DCB_ItemFoodPrice = #{dcbItemfoodprice,jdbcType=REAL},
+      </if>
+      <if test="dcbItemmoney != null" >
+        DCB_ItemMoney = #{dcbItemmoney,jdbcType=REAL},
+      </if>
+      <if test="dcbItemfoodnum != null" >
+        DCB_ItemFoodNum = #{dcbItemfoodnum,jdbcType=INTEGER},
+      </if>
+      <if test="dcbFoodpicture != null" >
+        DCB_FoodPicture = #{dcbFoodpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbDaybillitemtproperty1 != null" >
+        DCB_DayBillItemtProperty1 = #{dcbDaybillitemtproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbDaybillitemproperty2 != null" >
+        DCB_DayBillItemProperty2 = #{dcbDaybillitemproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DCB_DayBillItemId = #{dcbDaybillitemid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarvis.diancanba.base.pojo.DcbDaybillitem" >
+    update dcb_daybillitem
+    set DCB_DayBillId = #{dcbDaybillid,jdbcType=BIGINT},
+      DCB_ItemFoodId = #{dcbItemfoodid,jdbcType=BIGINT},
+      DCB_ItemFoodName = #{dcbItemfoodname,jdbcType=VARCHAR},
+      DCB_ItemFoodPrice = #{dcbItemfoodprice,jdbcType=REAL},
+      DCB_ItemMoney = #{dcbItemmoney,jdbcType=REAL},
+      DCB_ItemFoodNum = #{dcbItemfoodnum,jdbcType=INTEGER},
+      DCB_FoodPicture = #{dcbFoodpicture,jdbcType=VARCHAR},
+      DCB_DayBillItemtProperty1 = #{dcbDaybillitemtproperty1,jdbcType=VARCHAR},
+      DCB_DayBillItemProperty2 = #{dcbDaybillitemproperty2,jdbcType=VARCHAR}
+    where DCB_DayBillItemId = #{dcbDaybillitemid,jdbcType=BIGINT}
+  </update>
+</mapper>

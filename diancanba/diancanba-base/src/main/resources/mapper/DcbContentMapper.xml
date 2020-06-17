@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jarvis.diancanba.base.mapper.DcbContentMapper" >
+  <resultMap id="BaseResultMap" type="com.jarvis.diancanba.base.pojo.DcbContent" >
+    <id column="DCB_ContentId" property="dcbContentid" jdbcType="BIGINT" />
+    <result column="DCB_RestaurantId" property="dcbRestaurantid" jdbcType="BIGINT" />
+    <result column="DCB_ContentTile" property="dcbContenttile" jdbcType="VARCHAR" />
+    <result column="DCB_ContentPicture" property="dcbContentpicture" jdbcType="VARCHAR" />
+    <result column="DCB_ContentStatus" property="dcbContentstatus" jdbcType="INTEGER" />
+    <result column="DCB_ContentProperty1" property="dcbContentproperty1" jdbcType="VARCHAR" />
+    <result column="DCB_ContentProperty2" property="dcbContentproperty2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DCB_ContentId, DCB_RestaurantId, DCB_ContentTile, DCB_ContentPicture, DCB_ContentStatus, 
+    DCB_ContentProperty1, DCB_ContentProperty2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jarvis.diancanba.base.pojo.DcbContentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dcb_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcb_content
+    where DCB_ContentId = #{dcbContentid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dcb_content
+    where DCB_ContentId = #{dcbContentid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbContentExample" >
+    delete from dcb_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarvis.diancanba.base.pojo.DcbContent" >
+    insert into dcb_content (DCB_ContentId, DCB_RestaurantId, DCB_ContentTile, 
+      DCB_ContentPicture, DCB_ContentStatus, DCB_ContentProperty1, 
+      DCB_ContentProperty2)
+    values (#{dcbContentid,jdbcType=BIGINT}, #{dcbRestaurantid,jdbcType=BIGINT}, #{dcbContenttile,jdbcType=VARCHAR}, 
+      #{dcbContentpicture,jdbcType=VARCHAR}, #{dcbContentstatus,jdbcType=INTEGER}, #{dcbContentproperty1,jdbcType=VARCHAR}, 
+      #{dcbContentproperty2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarvis.diancanba.base.pojo.DcbContent" >
+    insert into dcb_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dcbContentid != null" >
+        DCB_ContentId,
+      </if>
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId,
+      </if>
+      <if test="dcbContenttile != null" >
+        DCB_ContentTile,
+      </if>
+      <if test="dcbContentpicture != null" >
+        DCB_ContentPicture,
+      </if>
+      <if test="dcbContentstatus != null" >
+        DCB_ContentStatus,
+      </if>
+      <if test="dcbContentproperty1 != null" >
+        DCB_ContentProperty1,
+      </if>
+      <if test="dcbContentproperty2 != null" >
+        DCB_ContentProperty2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dcbContentid != null" >
+        #{dcbContentid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantid != null" >
+        #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbContenttile != null" >
+        #{dcbContenttile,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbContentpicture != null" >
+        #{dcbContentpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbContentstatus != null" >
+        #{dcbContentstatus,jdbcType=INTEGER},
+      </if>
+      <if test="dcbContentproperty1 != null" >
+        #{dcbContentproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbContentproperty2 != null" >
+        #{dcbContentproperty2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbContentExample" resultType="java.lang.Integer" >
+    select count(*) from dcb_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dcb_content
+    <set >
+      <if test="record.dcbContentid != null" >
+        DCB_ContentId = #{record.dcbContentid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbRestaurantid != null" >
+        DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbContenttile != null" >
+        DCB_ContentTile = #{record.dcbContenttile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbContentpicture != null" >
+        DCB_ContentPicture = #{record.dcbContentpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbContentstatus != null" >
+        DCB_ContentStatus = #{record.dcbContentstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.dcbContentproperty1 != null" >
+        DCB_ContentProperty1 = #{record.dcbContentproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbContentproperty2 != null" >
+        DCB_ContentProperty2 = #{record.dcbContentproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dcb_content
+    set DCB_ContentId = #{record.dcbContentid,jdbcType=BIGINT},
+      DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      DCB_ContentTile = #{record.dcbContenttile,jdbcType=VARCHAR},
+      DCB_ContentPicture = #{record.dcbContentpicture,jdbcType=VARCHAR},
+      DCB_ContentStatus = #{record.dcbContentstatus,jdbcType=INTEGER},
+      DCB_ContentProperty1 = #{record.dcbContentproperty1,jdbcType=VARCHAR},
+      DCB_ContentProperty2 = #{record.dcbContentproperty2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarvis.diancanba.base.pojo.DcbContent" >
+    update dcb_content
+    <set >
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbContenttile != null" >
+        DCB_ContentTile = #{dcbContenttile,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbContentpicture != null" >
+        DCB_ContentPicture = #{dcbContentpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbContentstatus != null" >
+        DCB_ContentStatus = #{dcbContentstatus,jdbcType=INTEGER},
+      </if>
+      <if test="dcbContentproperty1 != null" >
+        DCB_ContentProperty1 = #{dcbContentproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbContentproperty2 != null" >
+        DCB_ContentProperty2 = #{dcbContentproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DCB_ContentId = #{dcbContentid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarvis.diancanba.base.pojo.DcbContent" >
+    update dcb_content
+    set DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT},
+      DCB_ContentTile = #{dcbContenttile,jdbcType=VARCHAR},
+      DCB_ContentPicture = #{dcbContentpicture,jdbcType=VARCHAR},
+      DCB_ContentStatus = #{dcbContentstatus,jdbcType=INTEGER},
+      DCB_ContentProperty1 = #{dcbContentproperty1,jdbcType=VARCHAR},
+      DCB_ContentProperty2 = #{dcbContentproperty2,jdbcType=VARCHAR}
+    where DCB_ContentId = #{dcbContentid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jarvis.diancanba.base.mapper.DcbRestaurantMapper" >
+  <resultMap id="BaseResultMap" type="com.jarvis.diancanba.base.pojo.DcbRestaurant" >
+    <id column="DCB_RestaurantId" property="dcbRestaurantid" jdbcType="BIGINT" />
+    <result column="DCB_BossId" property="dcbBossid" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantName" property="dcbRestaurantname" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantTel" property="dcbRestauranttel" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantDesc" property="dcbRestaurantdesc" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantAddress" property="dcbRestaurantaddress" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantUrl" property="dcbRestauranturl" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantPicture" property="dcbRestaurantpicture" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantStatus" property="dcbRestaurantstatus" jdbcType="INTEGER" />
+    <result column="DCB_RestaurantDate" property="dcbRestaurantdate" jdbcType="DATE" />
+    <result column="DCB_IsBusiness" property="dcbIsbusiness" jdbcType="INTEGER" />
+    <result column="DCB_RestaurantProperty1" property="dcbRestaurantproperty1" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantProperty2" property="dcbRestaurantproperty2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DCB_RestaurantId, DCB_BossId, DCB_RestaurantName, DCB_RestaurantTel, DCB_RestaurantDesc, 
+    DCB_RestaurantAddress, DCB_RestaurantUrl, DCB_RestaurantPicture, DCB_RestaurantStatus, 
+    DCB_RestaurantDate, DCB_IsBusiness, DCB_RestaurantProperty1, DCB_RestaurantProperty2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jarvis.diancanba.base.pojo.DcbRestaurantExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dcb_restaurant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcb_restaurant
+    where DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dcb_restaurant
+    where DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbRestaurantExample" >
+    delete from dcb_restaurant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarvis.diancanba.base.pojo.DcbRestaurant" >
+    insert into dcb_restaurant (DCB_RestaurantId, DCB_BossId, DCB_RestaurantName, 
+      DCB_RestaurantTel, DCB_RestaurantDesc, DCB_RestaurantAddress, 
+      DCB_RestaurantUrl, DCB_RestaurantPicture, 
+      DCB_RestaurantStatus, DCB_RestaurantDate, DCB_IsBusiness, 
+      DCB_RestaurantProperty1, DCB_RestaurantProperty2
+      )
+    values (#{dcbRestaurantid,jdbcType=BIGINT}, #{dcbBossid,jdbcType=VARCHAR}, #{dcbRestaurantname,jdbcType=VARCHAR}, 
+      #{dcbRestauranttel,jdbcType=VARCHAR}, #{dcbRestaurantdesc,jdbcType=VARCHAR}, #{dcbRestaurantaddress,jdbcType=VARCHAR}, 
+      #{dcbRestauranturl,jdbcType=VARCHAR}, #{dcbRestaurantpicture,jdbcType=VARCHAR}, 
+      #{dcbRestaurantstatus,jdbcType=INTEGER}, #{dcbRestaurantdate,jdbcType=DATE}, #{dcbIsbusiness,jdbcType=INTEGER}, 
+      #{dcbRestaurantproperty1,jdbcType=VARCHAR}, #{dcbRestaurantproperty2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarvis.diancanba.base.pojo.DcbRestaurant" >
+    insert into dcb_restaurant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId,
+      </if>
+      <if test="dcbBossid != null" >
+        DCB_BossId,
+      </if>
+      <if test="dcbRestaurantname != null" >
+        DCB_RestaurantName,
+      </if>
+      <if test="dcbRestauranttel != null" >
+        DCB_RestaurantTel,
+      </if>
+      <if test="dcbRestaurantdesc != null" >
+        DCB_RestaurantDesc,
+      </if>
+      <if test="dcbRestaurantaddress != null" >
+        DCB_RestaurantAddress,
+      </if>
+      <if test="dcbRestauranturl != null" >
+        DCB_RestaurantUrl,
+      </if>
+      <if test="dcbRestaurantpicture != null" >
+        DCB_RestaurantPicture,
+      </if>
+      <if test="dcbRestaurantstatus != null" >
+        DCB_RestaurantStatus,
+      </if>
+      <if test="dcbRestaurantdate != null" >
+        DCB_RestaurantDate,
+      </if>
+      <if test="dcbIsbusiness != null" >
+        DCB_IsBusiness,
+      </if>
+      <if test="dcbRestaurantproperty1 != null" >
+        DCB_RestaurantProperty1,
+      </if>
+      <if test="dcbRestaurantproperty2 != null" >
+        DCB_RestaurantProperty2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dcbRestaurantid != null" >
+        #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbBossid != null" >
+        #{dcbBossid,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantname != null" >
+        #{dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestauranttel != null" >
+        #{dcbRestauranttel,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantdesc != null" >
+        #{dcbRestaurantdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantaddress != null" >
+        #{dcbRestaurantaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestauranturl != null" >
+        #{dcbRestauranturl,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantpicture != null" >
+        #{dcbRestaurantpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantstatus != null" >
+        #{dcbRestaurantstatus,jdbcType=INTEGER},
+      </if>
+      <if test="dcbRestaurantdate != null" >
+        #{dcbRestaurantdate,jdbcType=DATE},
+      </if>
+      <if test="dcbIsbusiness != null" >
+        #{dcbIsbusiness,jdbcType=INTEGER},
+      </if>
+      <if test="dcbRestaurantproperty1 != null" >
+        #{dcbRestaurantproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantproperty2 != null" >
+        #{dcbRestaurantproperty2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbRestaurantExample" resultType="java.lang.Integer" >
+    select count(*) from dcb_restaurant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dcb_restaurant
+    <set >
+      <if test="record.dcbRestaurantid != null" >
+        DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbBossid != null" >
+        DCB_BossId = #{record.dcbBossid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestaurantname != null" >
+        DCB_RestaurantName = #{record.dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestauranttel != null" >
+        DCB_RestaurantTel = #{record.dcbRestauranttel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestaurantdesc != null" >
+        DCB_RestaurantDesc = #{record.dcbRestaurantdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestaurantaddress != null" >
+        DCB_RestaurantAddress = #{record.dcbRestaurantaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestauranturl != null" >
+        DCB_RestaurantUrl = #{record.dcbRestauranturl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestaurantpicture != null" >
+        DCB_RestaurantPicture = #{record.dcbRestaurantpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestaurantstatus != null" >
+        DCB_RestaurantStatus = #{record.dcbRestaurantstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.dcbRestaurantdate != null" >
+        DCB_RestaurantDate = #{record.dcbRestaurantdate,jdbcType=DATE},
+      </if>
+      <if test="record.dcbIsbusiness != null" >
+        DCB_IsBusiness = #{record.dcbIsbusiness,jdbcType=INTEGER},
+      </if>
+      <if test="record.dcbRestaurantproperty1 != null" >
+        DCB_RestaurantProperty1 = #{record.dcbRestaurantproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestaurantproperty2 != null" >
+        DCB_RestaurantProperty2 = #{record.dcbRestaurantproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dcb_restaurant
+    set DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      DCB_BossId = #{record.dcbBossid,jdbcType=VARCHAR},
+      DCB_RestaurantName = #{record.dcbRestaurantname,jdbcType=VARCHAR},
+      DCB_RestaurantTel = #{record.dcbRestauranttel,jdbcType=VARCHAR},
+      DCB_RestaurantDesc = #{record.dcbRestaurantdesc,jdbcType=VARCHAR},
+      DCB_RestaurantAddress = #{record.dcbRestaurantaddress,jdbcType=VARCHAR},
+      DCB_RestaurantUrl = #{record.dcbRestauranturl,jdbcType=VARCHAR},
+      DCB_RestaurantPicture = #{record.dcbRestaurantpicture,jdbcType=VARCHAR},
+      DCB_RestaurantStatus = #{record.dcbRestaurantstatus,jdbcType=INTEGER},
+      DCB_RestaurantDate = #{record.dcbRestaurantdate,jdbcType=DATE},
+      DCB_IsBusiness = #{record.dcbIsbusiness,jdbcType=INTEGER},
+      DCB_RestaurantProperty1 = #{record.dcbRestaurantproperty1,jdbcType=VARCHAR},
+      DCB_RestaurantProperty2 = #{record.dcbRestaurantproperty2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarvis.diancanba.base.pojo.DcbRestaurant" >
+    update dcb_restaurant
+    <set >
+      <if test="dcbBossid != null" >
+        DCB_BossId = #{dcbBossid,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantname != null" >
+        DCB_RestaurantName = #{dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestauranttel != null" >
+        DCB_RestaurantTel = #{dcbRestauranttel,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantdesc != null" >
+        DCB_RestaurantDesc = #{dcbRestaurantdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantaddress != null" >
+        DCB_RestaurantAddress = #{dcbRestaurantaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestauranturl != null" >
+        DCB_RestaurantUrl = #{dcbRestauranturl,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantpicture != null" >
+        DCB_RestaurantPicture = #{dcbRestaurantpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantstatus != null" >
+        DCB_RestaurantStatus = #{dcbRestaurantstatus,jdbcType=INTEGER},
+      </if>
+      <if test="dcbRestaurantdate != null" >
+        DCB_RestaurantDate = #{dcbRestaurantdate,jdbcType=DATE},
+      </if>
+      <if test="dcbIsbusiness != null" >
+        DCB_IsBusiness = #{dcbIsbusiness,jdbcType=INTEGER},
+      </if>
+      <if test="dcbRestaurantproperty1 != null" >
+        DCB_RestaurantProperty1 = #{dcbRestaurantproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantproperty2 != null" >
+        DCB_RestaurantProperty2 = #{dcbRestaurantproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarvis.diancanba.base.pojo.DcbRestaurant" >
+    update dcb_restaurant
+    set DCB_BossId = #{dcbBossid,jdbcType=VARCHAR},
+      DCB_RestaurantName = #{dcbRestaurantname,jdbcType=VARCHAR},
+      DCB_RestaurantTel = #{dcbRestauranttel,jdbcType=VARCHAR},
+      DCB_RestaurantDesc = #{dcbRestaurantdesc,jdbcType=VARCHAR},
+      DCB_RestaurantAddress = #{dcbRestaurantaddress,jdbcType=VARCHAR},
+      DCB_RestaurantUrl = #{dcbRestauranturl,jdbcType=VARCHAR},
+      DCB_RestaurantPicture = #{dcbRestaurantpicture,jdbcType=VARCHAR},
+      DCB_RestaurantStatus = #{dcbRestaurantstatus,jdbcType=INTEGER},
+      DCB_RestaurantDate = #{dcbRestaurantdate,jdbcType=DATE},
+      DCB_IsBusiness = #{dcbIsbusiness,jdbcType=INTEGER},
+      DCB_RestaurantProperty1 = #{dcbRestaurantproperty1,jdbcType=VARCHAR},
+      DCB_RestaurantProperty2 = #{dcbRestaurantproperty2,jdbcType=VARCHAR}
+    where DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>Fullscreen Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+        <link rel="stylesheet" href="./assets/css/reset.css">
+        <link rel="stylesheet" href="./assets/css/supersized.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
+
+        <script src="./plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="./plugins/bootstrap/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="./plugins/angularjs/angular.min.js">  </script>
+        <!-- 分页组件开始 -->
+        <script src="./plugins/angularjs/pagination.js"></script>
+        <link rel="stylesheet" href="./plugins/angularjs/pagination.css">
+        <!-- 分页组件结束 -->
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!--angular.js-->
+        <script src="./plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <!--<script src="./plugins/bootstrap/js/bootstrap.min.js"></script>-->
+        <script type="text/javascript" src="./js/base_pagination.js">  </script>
+        <script type="text/javascript" src="./js/service/bossService.js">  </script>
+        <script type="text/javascript" src="./js/controller/baseController.js">  </script>
+        <script type="text/javascript" src="./js/controller/bossController.js">  </script>
+
+
+        <!-- Dropzone所需要的组件 -->
+        <link rel="stylesheet" href="./plugins/dropzone/min/dropzone.min.css" />
+        <link rel="stylesheet" href="./plugins/dropzone/min/basic.min.css" />
+        <script src="./plugins/dropzone/min/dropzone.min.js"></script>
+        <script src = "./plugins/jQuery/jquery-2.2.3.min.js"></script>
+    </head>
+
+    <body ng-app="diancanba" ng-controller="bossController">
+
+        <div class="page-container">
+            <h1>注册</h1>
+
+
+                <input type="text" name="bossname" ng-model="bossAndRestaurnat.boss.dcbBossid" class="username" placeholder="登录名"><br>
+                <input type="password" name="password" ng-model="bossAndRestaurnat.boss.dcbBosspassword" class="password" placeholder="密码"><br>
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.boss.dcbBossname" class="username" placeholder="姓名"><br>
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.boss.dcbBosstel" class="username" placeholder="电话"><br>
+           <br>
+            <div style="width:300px;text-align:center;margin:auto">
+                <div id="dropz" class="dropzone"></div><br>
+            </div>
+                <input type="text" name="tel" id="picName" class="username" placeholder="头像"><br>
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.boss.dcbBossaddress" class="username" placeholder="地址"><br>
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.boss.dcbBossemail" class="username" placeholder="email"><br>
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.restaurant.dcbRestaurantname" class="username" placeholder="餐馆名"><br>
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.restaurant.dcbRestauranttel" class="username" placeholder="餐馆电话"><br>
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.restaurant.dcbRestaurantdesc" class="username" placeholder="餐馆描述"><br>
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.restaurant.dcbRestaurantaddress" class="username" placeholder="餐馆地址"><br>
+
+                <input type="text" name="tel" ng-model="bossAndRestaurnat.restaurant.dcbRestaurantpicture" class="username" placeholder="图片"><br>
+
+            <button type="submit" ng-click="add(bossAndRestaurnat)">Sign me in</button><br>
+                <div class="error"><span>+</span></div>
+
+
+            </div>
+        <br>
+        <br>
+        <div align="center"><a href="./login.html"><h2>返回登录页</h2></a></div>
+        </div>
+        <br>
+        <br>
+        <br>
+
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.8.2.min.js"></script>
+        <script src="assets/js/supersized.3.2.7.min.js"></script>
+        <script src="assets/js/supersized-init.js"></script>
+        <script src="assets/js/scripts.js"></script>
+
+    </body>
+
+
+    <!--图片上传-->
+    <script>
+        $('#Modal').on('hidden.bs.modal', function () {
+            applyZone.destroy();
+        });
+        var myDropzone = new Dropzone("#dropz", {
+            url: "./image/upload.do",
+            dictDefaultMessage: '拖动文件至此或者点击上传', // 设置默认的提示语句
+            paramName: "dropFile", // 传到后台的参数名称
+            init: function () {
+                this.on("success", function (file, data) {
+
+
+
+
+                    $("#picName").attr("value", data.fileName);
+                });
+            }
+        });
+</script>
+</html>
+

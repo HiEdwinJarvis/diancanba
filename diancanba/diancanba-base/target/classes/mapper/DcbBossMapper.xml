@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jarvis.diancanba.base.mapper.DcbBossMapper" >
+  <resultMap id="BaseResultMap" type="com.jarvis.diancanba.base.pojo.DcbBoss" >
+    <id column="DCB_BossId" property="dcbBossid" jdbcType="VARCHAR" />
+    <result column="DCB_BossPassword" property="dcbBosspassword" jdbcType="VARCHAR" />
+    <result column="DCB_BossName" property="dcbBossname" jdbcType="VARCHAR" />
+    <result column="DCB_BossTel" property="dcbBosstel" jdbcType="VARCHAR" />
+    <result column="DCB_BossHeadImg" property="dcbBossheadimg" jdbcType="VARCHAR" />
+    <result column="DCB_RestaurantName" property="dcbRestaurantname" jdbcType="VARCHAR" />
+    <result column="DCB_BossStatus" property="dcbBossstatus" jdbcType="INTEGER" />
+    <result column="DCB_BossAddress" property="dcbBossaddress" jdbcType="VARCHAR" />
+    <result column="DCB_BossEmail" property="dcbBossemail" jdbcType="VARCHAR" />
+    <result column="DCB_CreateTime" property="dcbCreatetime" jdbcType="TIMESTAMP" />
+    <result column="DCB_BossProperty1" property="dcbBossproperty1" jdbcType="VARCHAR" />
+    <result column="DCB_BossProperty2" property="dcbBossproperty2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DCB_BossId, DCB_BossPassword, DCB_BossName, DCB_BossTel, DCB_BossHeadImg, DCB_RestaurantName, 
+    DCB_BossStatus, DCB_BossAddress, DCB_BossEmail, DCB_CreateTime, DCB_BossProperty1, 
+    DCB_BossProperty2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jarvis.diancanba.base.pojo.DcbBossExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dcb_boss
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcb_boss
+    where DCB_BossId = #{dcbBossid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dcb_boss
+    where DCB_BossId = #{dcbBossid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbBossExample" >
+    delete from dcb_boss
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarvis.diancanba.base.pojo.DcbBoss" >
+    insert into dcb_boss (DCB_BossId, DCB_BossPassword, DCB_BossName, 
+      DCB_BossTel, DCB_BossHeadImg, DCB_RestaurantName, 
+      DCB_BossStatus, DCB_BossAddress, DCB_BossEmail, 
+      DCB_CreateTime, DCB_BossProperty1, DCB_BossProperty2
+      )
+    values (#{dcbBossid,jdbcType=VARCHAR}, #{dcbBosspassword,jdbcType=VARCHAR}, #{dcbBossname,jdbcType=VARCHAR}, 
+      #{dcbBosstel,jdbcType=VARCHAR}, #{dcbBossheadimg,jdbcType=VARCHAR}, #{dcbRestaurantname,jdbcType=VARCHAR}, 
+      #{dcbBossstatus,jdbcType=INTEGER}, #{dcbBossaddress,jdbcType=VARCHAR}, #{dcbBossemail,jdbcType=VARCHAR}, 
+      #{dcbCreatetime,jdbcType=TIMESTAMP}, #{dcbBossproperty1,jdbcType=VARCHAR}, #{dcbBossproperty2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarvis.diancanba.base.pojo.DcbBoss" >
+    insert into dcb_boss
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dcbBossid != null" >
+        DCB_BossId,
+      </if>
+      <if test="dcbBosspassword != null" >
+        DCB_BossPassword,
+      </if>
+      <if test="dcbBossname != null" >
+        DCB_BossName,
+      </if>
+      <if test="dcbBosstel != null" >
+        DCB_BossTel,
+      </if>
+      <if test="dcbBossheadimg != null" >
+        DCB_BossHeadImg,
+      </if>
+      <if test="dcbRestaurantname != null" >
+        DCB_RestaurantName,
+      </if>
+      <if test="dcbBossstatus != null" >
+        DCB_BossStatus,
+      </if>
+      <if test="dcbBossaddress != null" >
+        DCB_BossAddress,
+      </if>
+      <if test="dcbBossemail != null" >
+        DCB_BossEmail,
+      </if>
+      <if test="dcbCreatetime != null" >
+        DCB_CreateTime,
+      </if>
+      <if test="dcbBossproperty1 != null" >
+        DCB_BossProperty1,
+      </if>
+      <if test="dcbBossproperty2 != null" >
+        DCB_BossProperty2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dcbBossid != null" >
+        #{dcbBossid,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBosspassword != null" >
+        #{dcbBosspassword,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossname != null" >
+        #{dcbBossname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBosstel != null" >
+        #{dcbBosstel,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossheadimg != null" >
+        #{dcbBossheadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantname != null" >
+        #{dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossstatus != null" >
+        #{dcbBossstatus,jdbcType=INTEGER},
+      </if>
+      <if test="dcbBossaddress != null" >
+        #{dcbBossaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossemail != null" >
+        #{dcbBossemail,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbCreatetime != null" >
+        #{dcbCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dcbBossproperty1 != null" >
+        #{dcbBossproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossproperty2 != null" >
+        #{dcbBossproperty2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbBossExample" resultType="java.lang.Integer" >
+    select count(*) from dcb_boss
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dcb_boss
+    <set >
+      <if test="record.dcbBossid != null" >
+        DCB_BossId = #{record.dcbBossid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbBosspassword != null" >
+        DCB_BossPassword = #{record.dcbBosspassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbBossname != null" >
+        DCB_BossName = #{record.dcbBossname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbBosstel != null" >
+        DCB_BossTel = #{record.dcbBosstel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbBossheadimg != null" >
+        DCB_BossHeadImg = #{record.dcbBossheadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbRestaurantname != null" >
+        DCB_RestaurantName = #{record.dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbBossstatus != null" >
+        DCB_BossStatus = #{record.dcbBossstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.dcbBossaddress != null" >
+        DCB_BossAddress = #{record.dcbBossaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbBossemail != null" >
+        DCB_BossEmail = #{record.dcbBossemail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbCreatetime != null" >
+        DCB_CreateTime = #{record.dcbCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dcbBossproperty1 != null" >
+        DCB_BossProperty1 = #{record.dcbBossproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbBossproperty2 != null" >
+        DCB_BossProperty2 = #{record.dcbBossproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dcb_boss
+    set DCB_BossId = #{record.dcbBossid,jdbcType=VARCHAR},
+      DCB_BossPassword = #{record.dcbBosspassword,jdbcType=VARCHAR},
+      DCB_BossName = #{record.dcbBossname,jdbcType=VARCHAR},
+      DCB_BossTel = #{record.dcbBosstel,jdbcType=VARCHAR},
+      DCB_BossHeadImg = #{record.dcbBossheadimg,jdbcType=VARCHAR},
+      DCB_RestaurantName = #{record.dcbRestaurantname,jdbcType=VARCHAR},
+      DCB_BossStatus = #{record.dcbBossstatus,jdbcType=INTEGER},
+      DCB_BossAddress = #{record.dcbBossaddress,jdbcType=VARCHAR},
+      DCB_BossEmail = #{record.dcbBossemail,jdbcType=VARCHAR},
+      DCB_CreateTime = #{record.dcbCreatetime,jdbcType=TIMESTAMP},
+      DCB_BossProperty1 = #{record.dcbBossproperty1,jdbcType=VARCHAR},
+      DCB_BossProperty2 = #{record.dcbBossproperty2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarvis.diancanba.base.pojo.DcbBoss" >
+    update dcb_boss
+    <set >
+      <if test="dcbBosspassword != null" >
+        DCB_BossPassword = #{dcbBosspassword,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossname != null" >
+        DCB_BossName = #{dcbBossname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBosstel != null" >
+        DCB_BossTel = #{dcbBosstel,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossheadimg != null" >
+        DCB_BossHeadImg = #{dcbBossheadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbRestaurantname != null" >
+        DCB_RestaurantName = #{dcbRestaurantname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossstatus != null" >
+        DCB_BossStatus = #{dcbBossstatus,jdbcType=INTEGER},
+      </if>
+      <if test="dcbBossaddress != null" >
+        DCB_BossAddress = #{dcbBossaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossemail != null" >
+        DCB_BossEmail = #{dcbBossemail,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbCreatetime != null" >
+        DCB_CreateTime = #{dcbCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dcbBossproperty1 != null" >
+        DCB_BossProperty1 = #{dcbBossproperty1,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbBossproperty2 != null" >
+        DCB_BossProperty2 = #{dcbBossproperty2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DCB_BossId = #{dcbBossid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarvis.diancanba.base.pojo.DcbBoss" >
+    update dcb_boss
+    set DCB_BossPassword = #{dcbBosspassword,jdbcType=VARCHAR},
+      DCB_BossName = #{dcbBossname,jdbcType=VARCHAR},
+      DCB_BossTel = #{dcbBosstel,jdbcType=VARCHAR},
+      DCB_BossHeadImg = #{dcbBossheadimg,jdbcType=VARCHAR},
+      DCB_RestaurantName = #{dcbRestaurantname,jdbcType=VARCHAR},
+      DCB_BossStatus = #{dcbBossstatus,jdbcType=INTEGER},
+      DCB_BossAddress = #{dcbBossaddress,jdbcType=VARCHAR},
+      DCB_BossEmail = #{dcbBossemail,jdbcType=VARCHAR},
+      DCB_CreateTime = #{dcbCreatetime,jdbcType=TIMESTAMP},
+      DCB_BossProperty1 = #{dcbBossproperty1,jdbcType=VARCHAR},
+      DCB_BossProperty2 = #{dcbBossproperty2,jdbcType=VARCHAR}
+    where DCB_BossId = #{dcbBossid,jdbcType=VARCHAR}
+  </update>
+</mapper>

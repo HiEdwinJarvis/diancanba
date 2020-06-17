@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/diancanba-Restaurant" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/diancanba-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/diancanba-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/diancanba-dependencies" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/diancanba-manager" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/diancanba-task" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/diancanba-user" charset="UTF-8" />
+  </component>
+</project>

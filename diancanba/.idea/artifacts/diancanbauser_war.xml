@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="diancanbauser:war">
+    <output-path>$PROJECT_DIR$/diancanba-user/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>diancanbauser</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="diancanba-user-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="diancanbauser:war exploded" />
+    </root>
+  </artifact>
+</component>

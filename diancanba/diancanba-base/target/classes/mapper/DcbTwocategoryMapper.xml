@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jarvis.diancanba.base.mapper.DcbTwocategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.jarvis.diancanba.base.pojo.DcbTwocategory" >
+    <id column="DCB_TwoCategoryId" property="dcbTwocategoryid" jdbcType="BIGINT" />
+    <result column="DCB_OneCategoryId" property="dcbOnecategoryid" jdbcType="BIGINT" />
+    <result column="DCB_RestaurantId" property="dcbRestaurantid" jdbcType="BIGINT" />
+    <result column="DCB_TwoCategoryName" property="dcbTwocategoryname" jdbcType="VARCHAR" />
+    <result column="DCB_TwoCategoryDesc" property="dcbTwocategorydesc" jdbcType="VARCHAR" />
+    <result column="DCB_TwoCategoryPicture" property="dcbTwocategorypicture" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DCB_TwoCategoryId, DCB_OneCategoryId, DCB_RestaurantId, DCB_TwoCategoryName, DCB_TwoCategoryDesc, 
+    DCB_TwoCategoryPicture
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jarvis.diancanba.base.pojo.DcbTwocategoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dcb_twocategory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcb_twocategory
+    where DCB_TwoCategoryId = #{dcbTwocategoryid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dcb_twocategory
+    where DCB_TwoCategoryId = #{dcbTwocategoryid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbTwocategoryExample" >
+    delete from dcb_twocategory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jarvis.diancanba.base.pojo.DcbTwocategory" >
+    insert into dcb_twocategory (DCB_TwoCategoryId, DCB_OneCategoryId, 
+      DCB_RestaurantId, DCB_TwoCategoryName, DCB_TwoCategoryDesc, 
+      DCB_TwoCategoryPicture)
+    values (#{dcbTwocategoryid,jdbcType=BIGINT}, #{dcbOnecategoryid,jdbcType=BIGINT}, 
+      #{dcbRestaurantid,jdbcType=BIGINT}, #{dcbTwocategoryname,jdbcType=VARCHAR}, #{dcbTwocategorydesc,jdbcType=VARCHAR}, 
+      #{dcbTwocategorypicture,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jarvis.diancanba.base.pojo.DcbTwocategory" >
+    insert into dcb_twocategory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dcbTwocategoryid != null" >
+        DCB_TwoCategoryId,
+      </if>
+      <if test="dcbOnecategoryid != null" >
+        DCB_OneCategoryId,
+      </if>
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId,
+      </if>
+      <if test="dcbTwocategoryname != null" >
+        DCB_TwoCategoryName,
+      </if>
+      <if test="dcbTwocategorydesc != null" >
+        DCB_TwoCategoryDesc,
+      </if>
+      <if test="dcbTwocategorypicture != null" >
+        DCB_TwoCategoryPicture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dcbTwocategoryid != null" >
+        #{dcbTwocategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbOnecategoryid != null" >
+        #{dcbOnecategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantid != null" >
+        #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbTwocategoryname != null" >
+        #{dcbTwocategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbTwocategorydesc != null" >
+        #{dcbTwocategorydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbTwocategorypicture != null" >
+        #{dcbTwocategorypicture,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jarvis.diancanba.base.pojo.DcbTwocategoryExample" resultType="java.lang.Integer" >
+    select count(*) from dcb_twocategory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dcb_twocategory
+    <set >
+      <if test="record.dcbTwocategoryid != null" >
+        DCB_TwoCategoryId = #{record.dcbTwocategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbOnecategoryid != null" >
+        DCB_OneCategoryId = #{record.dcbOnecategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbRestaurantid != null" >
+        DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dcbTwocategoryname != null" >
+        DCB_TwoCategoryName = #{record.dcbTwocategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbTwocategorydesc != null" >
+        DCB_TwoCategoryDesc = #{record.dcbTwocategorydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dcbTwocategorypicture != null" >
+        DCB_TwoCategoryPicture = #{record.dcbTwocategorypicture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dcb_twocategory
+    set DCB_TwoCategoryId = #{record.dcbTwocategoryid,jdbcType=BIGINT},
+      DCB_OneCategoryId = #{record.dcbOnecategoryid,jdbcType=BIGINT},
+      DCB_RestaurantId = #{record.dcbRestaurantid,jdbcType=BIGINT},
+      DCB_TwoCategoryName = #{record.dcbTwocategoryname,jdbcType=VARCHAR},
+      DCB_TwoCategoryDesc = #{record.dcbTwocategorydesc,jdbcType=VARCHAR},
+      DCB_TwoCategoryPicture = #{record.dcbTwocategorypicture,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jarvis.diancanba.base.pojo.DcbTwocategory" >
+    update dcb_twocategory
+    <set >
+      <if test="dcbOnecategoryid != null" >
+        DCB_OneCategoryId = #{dcbOnecategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbRestaurantid != null" >
+        DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT},
+      </if>
+      <if test="dcbTwocategoryname != null" >
+        DCB_TwoCategoryName = #{dcbTwocategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbTwocategorydesc != null" >
+        DCB_TwoCategoryDesc = #{dcbTwocategorydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dcbTwocategorypicture != null" >
+        DCB_TwoCategoryPicture = #{dcbTwocategorypicture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DCB_TwoCategoryId = #{dcbTwocategoryid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jarvis.diancanba.base.pojo.DcbTwocategory" >
+    update dcb_twocategory
+    set DCB_OneCategoryId = #{dcbOnecategoryid,jdbcType=BIGINT},
+      DCB_RestaurantId = #{dcbRestaurantid,jdbcType=BIGINT},
+      DCB_TwoCategoryName = #{dcbTwocategoryname,jdbcType=VARCHAR},
+      DCB_TwoCategoryDesc = #{dcbTwocategorydesc,jdbcType=VARCHAR},
+      DCB_TwoCategoryPicture = #{dcbTwocategorypicture,jdbcType=VARCHAR}
+    where DCB_TwoCategoryId = #{dcbTwocategoryid,jdbcType=BIGINT}
+  </update>
+</mapper>
